@@ -1,0 +1,1 @@
+//add test suite for multiply.js
