@@ -27,7 +27,9 @@ class ViewManager {
 		var factors = [];
 		for (let i = 1; i <= factorCount; i++) {
 			let number = document.getElementById('num' + i).value;
-			factors.push(parseInt(number, 10));
+			if (number) {
+				factors.push(parseInt(number, 10));
+			}
 		}
 
 		const product = multiply.apply(this, factors);
