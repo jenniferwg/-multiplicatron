@@ -3,9 +3,11 @@ const multiply = require('./multiply.js');
 class ViewManager {
 
 	connectEventHandlers() {
-		//listen for submit action, <element for submit>.addEventListener() - run onSubmit()
+		document.getElementById('form-multiply')
+			.addEventListener("submit", this.onSubmit.bind(this));
 
-		//listen for new factor action - run onFactor()
+		document.getElementById('new-factor')
+			.addEventListener("click", this.onFactor.bind(this));
 	}
 
 	onSubmit(event) {
