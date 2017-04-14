@@ -28,8 +28,8 @@ class ViewManager {
 		for (let i = 1; i <= factorCount; i++) {
 			let number = document.getElementById('num' + i).value;
 			if (number) {
-				factors.push(number);
-				if (isNaN(parseInt(number,10)) === true) {
+				factors.push(parseFloat(number, 10));
+				if (isNaN(parseFloat(number, 10)) === true) {
 					document.getElementById('num' + i).style.border = "2px solid red";
 				} else {
 					document.getElementById('num' + i).style.border = "";
