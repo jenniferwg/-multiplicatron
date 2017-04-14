@@ -1,4 +1,4 @@
-multiply = require('./multiply.js');
+const multiply = require('./multiply.js');
 
 function assertEquals(a, b) {
 	console.log(a === b ? "Passed!" : "Expected " + a + " but returned " + b + ".");
