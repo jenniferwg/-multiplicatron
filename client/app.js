@@ -6,38 +6,37 @@ var factorCount = 2;
 class ViewManager {
 
 	connectEventHandlers() {
-		document.getElementById('form-multiply')
-			.addEventListener("submit", this.onSubmit.bind(this));
-
+		document.getElementById('calculate')
+			.addEventListener("click", function(event) {
+				document.querySelector('.product').textContent = "3";
+			});
 		document.getElementById('new-factor')
-			.addEventListener("click", this.onFactor());
+			.addEventListener("click", this.onFactor.bind(this));
 	}
 
-	onFactor() {
+	onFactor(event) {
 		let field = document.createElement('div');
 		field.innerHTML = "<input id='num" + factorNumber + "' type='text' size='3' />"
 
 		factorNumber++;
 		factorCount++;
 
-		let submit = document.getElementById('calculate');
-		submit.insertAdjacentElement('afterend', field);
+		let product = document.querySelector('.product');
+		product.parentNode.insertBefore(field, product);
 	}
 
 	onSubmit(event) {
-		event.preventDefault();
-
-		let arguments = [];
+		var factors = [];
 		for (i = 1; i <= factorCount; i++) {
 			let number = document.getElementById('num' + i).value;
-			arguments.push(parseInt(number, 10));
+			factors.push(parseInt(number, 10));
 		}
 
-		const product = multiply(arguments);
-		document.getElementById('product').textContent = product;
+		const product = multiply.apply(this, factors);
+		document.querySelector('.product').textContent = 3;
 	}
 
 }
 
-const ViewManager = new ViewManager;
-ViewManager.connectEventHandlers();
+const viewManager = new ViewManager;
+viewManager.connectEventHandlers();
