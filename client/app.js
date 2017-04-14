@@ -7,9 +7,7 @@ class ViewManager {
 
 	connectEventHandlers() {
 		document.getElementById('calculate')
-			.addEventListener("click", function(event) {
-				document.querySelector('.product').textContent = "3";
-			});
+			.addEventListener("click", this.onSubmit.bind(this));
 		document.getElementById('new-factor')
 			.addEventListener("click", this.onFactor.bind(this));
 	}
@@ -27,13 +25,13 @@ class ViewManager {
 
 	onSubmit(event) {
 		var factors = [];
-		for (i = 1; i <= factorCount; i++) {
+		for (let i = 1; i <= factorCount; i++) {
 			let number = document.getElementById('num' + i).value;
 			factors.push(parseInt(number, 10));
 		}
 
 		const product = multiply.apply(this, factors);
-		document.querySelector('.product').textContent = 3;
+		document.querySelector('.product').textContent = product;
 	}
 
 }
