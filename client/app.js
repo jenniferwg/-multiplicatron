@@ -14,13 +14,13 @@ class ViewManager {
 
 	onFactor(event) {
 		let field = document.createElement('div');
-		field.innerHTML = "<input id='num" + factorNumber + "' type='text' size='3' />"
+		field.innerHTML = "<input id='num" + factorNumber + "' type='text' autocomplete='off' />"
 
 		factorNumber++;
 		factorCount++;
 
-		let product = document.querySelector('.product');
-		product.parentNode.insertBefore(field, product);
+		let linebreak = document.getElementById('linebreak');
+		linebreak.parentNode.insertBefore(field, linebreak);
 	}
 
 	onSubmit(event) {
