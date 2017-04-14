@@ -1,5 +1,8 @@
 const multiply = require('./multiply.js');
 
+var factorNumber = 3;
+var factorCount = 2;
+
 class ViewManager {
 
 	connectEventHandlers() {
@@ -7,27 +10,34 @@ class ViewManager {
 			.addEventListener("submit", this.onSubmit.bind(this));
 
 		document.getElementById('new-factor')
-			.addEventListener("click", this.onFactor.bind(this));
+			.addEventListener("click", this.onFactor());
+	}
+
+	onFactor() {
+		let field = document.createElement('div');
+		field.innerHTML = "<input id='num" + factorNumber + "' type='text' size='3' />"
+
+		factorNumber++;
+		factorCount++;
+
+		let submit = document.getElementById('calculate');
+		submit.insertAdjacentElement('afterend', field);
 	}
 
 	onSubmit(event) {
-		//loop over provided factors to create array
-		//call multiply on array to return product -- any potential issue passing?
+		event.preventDefault();
 
-		//return product by editing textContent for div
+		let arguments = [];
+		for (i = 1; i <= factorCount; i++) {
+			let number = document.getElementById('num' + i).value;
+			arguments.push(parseInt(number, 10));
+		}
+
+		const product = multiply(arguments);
+		document.getElementById('product').textContent = product;
 	}
-
-	onFactor(event) {
-		/*create new div elemnt for new factor
-		try: 
-			1) create div: let field = document.createElement('div')
-				a. add attributes: field.innerHTML = "<input id="" + <id> + "" type="text" size="3" />"
-			2) retrieve submit element: let submit = getElementById(<submit id>)
-			3) insert div before submit element: submit.insertAdjacentElement('afterend', field)
-		*/
-
-		//create an id counter variable at top and increment for each run of onFactor
-	}
-
 
 }
+
+const ViewManager = new ViewManager;
+ViewManager.connectEventHandlers();

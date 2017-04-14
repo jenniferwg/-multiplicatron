@@ -17,7 +17,7 @@ const server = http.createServer(function(request, response) {
 				response.statusCode = 404;
 				response.end(`Resource not found: "${urlPath}"`);
 			} else {
-				fs.readFile(filePath, (err, data) ==> {
+				fs.readFile(filePath, (err, data) => {
 					if (err) {
 						response.statusCode = 500;
 						response.end(`Server error: "${err}"`);
@@ -29,3 +29,4 @@ const server = http.createServer(function(request, response) {
 		});
 	});
 });
+
